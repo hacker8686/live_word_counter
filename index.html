@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live word counter</title>
+</head>
+<style>
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #8b5ceb;
+}
+.wrapper {
+  position: absolute;
+  width: 90vmin;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.container {
+  background-color: #ffffff;
+  padding: 50px 30px 80px 30px;
+  border-radius: 8px;
+  box-shadow: 0 30px 50px rgba(30, 21, 49, 0.3);
+}
+textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 28px;
+  color: #0e101a;
+}
+.count {
+  background-color: #000000;
+  width: 80%;
+  padding: 20px;
+  position: relative;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 20px 40px rgba(30, 21, 49, 0.4);
+}
+.count p {
+  color: #a0a0c0;
+}
+.count h5 {
+  color: #ffffff;
+  font-size: 32px;
+}
+</style>
+<body>
+    <div class="wrapper">
+        <div class="container">
+          <textarea
+            id="input-textarea"
+            rows="12"
+            placeholder="Start Typing here..."
+          ></textarea>
+        </div>
+        <div class="count">
+          <div>
+            <h5 id="word-count">0</h5>
+            <p>Words</p>
+          </div>
+          <div>
+            <h5 id="charac-count">0</h5>
+            <p>Characters</p>
+          </div>
+        </div>
+      </div>
+</body>
+<script>
+let input_text = document.getElementById("input-textarea")
+let word_count = document.getElementById("word-count")
+let char_count = document.getElementById("charac-count")
+
+input_text.addEventListener("input", ()=>
+{
+    char_count.textContent=input_text.value.length  // to count the characters
+
+    let wordsArray = input_text.value.trim().split(/\s+/);
+    let filteredWordsArray = wordsArray.filter(word => word !== "");
+    
+    word_count.textContent = filteredWordsArray.length; 
+})
+</script>
+</html>
